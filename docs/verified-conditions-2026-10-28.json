@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "comparison": "no_fault_vs_injected_primary_outage",
+  "verification": "PASS",
+  "settings": {
+    "protocol": "udp",
+    "seconds": 24,
+    "interval_us": 20000,
+    "timeout_ms": 200
+  },
+  "control": {
+    "runs": 2,
+    "attempts": 2353,
+    "successful_echoes": 2353,
+    "unsuccessful_echoes": 0,
+    "observed_echo_failure_ratio": 0.0,
+    "run_level_median_p99_ms": 0.8008385
+  },
+  "failover": {
+    "runs": 2,
+    "attempts": 2334,
+    "successful_echoes": 2332,
+    "unsuccessful_echoes": 2,
+    "observed_echo_failure_ratio": 0.000856898029134533,
+    "run_level_median_p99_ms": 0.6800335
+  },
+  "descriptive_delta_echo_failure_ratio": 0.000856898029134533,
+  "descriptive_delta_run_median_p99_ms": -0.12080500000000005,
+  "causal_claim": "NOT_ESTABLISHED",
+  "limitations": [
+    "Runs are sequential Docker/WSL2 observations; background CPU load and host scheduling are uncontrolled.",
+    "Echo failures are missing application replies by deadline, not proof of physical on-wire packet loss.",
+    "User-space RTT is not NIC hardware latency. No PTP/hardware timestamping.",
+    "Small run counts cannot establish statistical confidence, formal significance or BGP convergence time.",
+    "Run-level p99 medians and failure-ratio differences are descriptive, not causal evidence."
+  ],
+  "source_archives_sha256": {
+    "control": "50c081e4db761eebe0887b0474ce9b97157e4f87266c1903bf2ee23c60eb7bdf",
+    "failover": "be27c00da7b0813ba13c337c5112d02929b2e19adb693962c4700822681f3c4f"
+  },
+  "control_run_ids": [
+    "control-set-01-01",
+    "control-set-01-02"
+  ],
+  "failover_run_ids": [
+    "trial-set-01-01",
+    "trial-set-01-02"
+  ],
+  "failover_missed_probes": [
+    {
+      "run_id": "trial-set-01-01",
+      "observed": [
+        {
+          "sequence": 296,
+          "outcome": "timeout",
+          "offset_s": 6.002654,
+          "approx_ms_after_stop_request": 150.654,
+          "approx_ms_after_stop_command_finished": -211.346
+        }
+      ]
+    },
+    {
+      "run_id": "trial-set-01-02",
+      "observed": [
+        {
+          "sequence": 295,
+          "outcome": "timeout",
+          "offset_s": 6.025972,
+          "approx_ms_after_stop_request": 182.972,
+          "approx_ms_after_stop_command_finished": -239.028
+        }
+      ]
+    }
+  ],
+  "data_provenance": "Original CSV, JSON, events, nested ZIP bytes and original hashes verified independently",
+  "no_fault_network_checks": "Lab routing checks executed by control orchestrator, not independently re-measured by offline review",
+  "cross_series_causality": "NOT_ESTABLISHED"
+}

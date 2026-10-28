@@ -1,0 +1,24 @@
+name: netpath-bench-lab
+x-benchmark: &benchmark
+  build: .
+  image: netpath-bench-lab:1.0
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  networks:
+    - bench-net
+services:
+  server:
+    <<: *benchmark
+    command: ["serve", "--port", "9000"]
+    restart: "unless-stopped"
+  bench:
+    <<: *benchmark
+    profiles: ["manual"]
+    volumes:
+      - ./reports:/reports
+networks:
+  bench-net:
+    driver: bridge
+    internal: true

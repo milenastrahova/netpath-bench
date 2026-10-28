@@ -1,0 +1,12 @@
+build/
+cmake-build-*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.vscode/
+.vs/
+reports/*
+!reports/.gitkeep
+*.log
+*.exe
+*.obj

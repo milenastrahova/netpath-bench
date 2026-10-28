@@ -1,0 +1,7 @@
+.git
+.github
+build
+__pycache__
+reports
+*.zip
+*.log

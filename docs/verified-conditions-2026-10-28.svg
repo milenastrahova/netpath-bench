@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 510" role="img" aria-label="Measured run-level p99 and unsuccessful echoes">
+<rect width="920" height="510" rx="16" fill="#f8fafc"/>
+<text x="36" y="48" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#17253a">NetPath Bench — observed conditions</text>
+<text x="36" y="76" font-family="Arial,sans-serif" font-size="14" fill="#506178">Four Docker/FRR trials, 28 October 2026 · descriptive only</text>
+<text x="36" y="112" font-family="Arial,sans-serif" font-size="15" font-weight="600" fill="#17253a">Median per-run p99 RTT (successful UDP echoes, ms)</text>
+<line x1="75" y1="394" x2="842" y2="394" stroke="#9baabc" stroke-width="1.5"/>
+<line x1="75" x2="842" y1="394.0" y2="394.0" stroke="#dfe6ec"/>
+<text x="66" y="398.0" text-anchor="end" font-family="Arial" font-size="12" fill="#506178">0.00</text>
+<line x1="75" x2="842" y1="336.8" y2="336.8" stroke="#dfe6ec"/>
+<text x="66" y="340.8" text-anchor="end" font-family="Arial" font-size="12" fill="#506178">0.26</text>
+<line x1="75" x2="842" y1="279.5" y2="279.5" stroke="#dfe6ec"/>
+<text x="66" y="283.5" text-anchor="end" font-family="Arial" font-size="12" fill="#506178">0.52</text>
+<line x1="75" x2="842" y1="222.2" y2="222.2" stroke="#dfe6ec"/>
+<text x="66" y="226.2" text-anchor="end" font-family="Arial" font-size="12" fill="#506178">0.78</text>
+<line x1="75" x2="842" y1="165.0" y2="165.0" stroke="#dfe6ec"/>
+<text x="66" y="169.0" text-anchor="end" font-family="Arial" font-size="12" fill="#506178">1.04</text>
+<rect x="250" y="217.8" width="115" height="176.2" fill="#16838a" rx="5"/>
+<text x="308" y="205.8" font-family="Arial" font-size="17" font-weight="700" text-anchor="middle" fill="#18253a">0.801</text>
+<text x="308" y="418" font-family="Arial" font-size="14" text-anchor="middle" fill="#233146">No fault</text>
+<text x="308" y="441" font-family="Arial" font-size="13" text-anchor="middle" fill="#516075">0 / 2353 echo misses</text>
+<rect x="585" y="244.4" width="115" height="149.6" fill="#bd5c45" rx="5"/>
+<text x="643" y="232.4" font-family="Arial" font-size="17" font-weight="700" text-anchor="middle" fill="#18253a">0.680</text>
+<text x="643" y="418" font-family="Arial" font-size="14" text-anchor="middle" fill="#233146">Primary outage</text>
+<text x="643" y="441" font-family="Arial" font-size="13" text-anchor="middle" fill="#516075">2 / 2334 echo misses</text>
+<text x="36" y="482" font-family="Arial" font-size="13" fill="#56657a">Missing replies are application observations, not verified wire loss. Causality NOT established.</text>
+</svg>

@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "experiment": "independent_netpath_series_evidence_audit",
+  "verification": "PASS",
+  "series_id": "trial-set-01",
+  "run_count": 2,
+  "settings": {
+    "protocol": "udp",
+    "seconds": 24,
+    "fault_at": 6,
+    "fault_seconds": 5,
+    "timeout_ms": 200,
+    "interval_us": 20000
+  },
+  "counts": {
+    "application_echo_attempts": 2334,
+    "successful_echoes": 2332,
+    "unsuccessful_echoes": 2,
+    "overall_observed_echo_failure_ratio": 0.0008569
+  },
+  "runs": [
+    {
+      "run_id": "trial-set-01-01",
+      "attempts": 1168,
+      "successes": 1167,
+      "unsuccessful": 1,
+      "failure_ratio": 0.000856,
+      "rtt_ms": {
+        "min": 0.069369,
+        "mean": 0.24860377806341044,
+        "p50": 0.200544,
+        "p95": 0.478919,
+        "p99": 0.623379,
+        "p999": 0.926852,
+        "max": 0.975442
+      },
+      "phase_counts": {
+        "pre_stop": {
+          "samples": 289,
+          "successful_echoes": 289,
+          "missing_or_invalid_echoes": 0,
+          "application_echo_failure_ratio": 0.0,
+          "rtt_ms": {
+            "min": 0.073957,
+            "mean": 0.16931357785467127,
+            "p50": 0.144418,
+            "p95": 0.327457,
+            "p99": 0.564393,
+            "p999": 0.926852,
+            "max": 0.926852
+          }
+        },
+        "stop_to_restore_finished": {
+          "samples": 267,
+          "successful_echoes": 266,
+          "missing_or_invalid_echoes": 1,
+          "application_echo_failure_ratio": 0.003745,
+          "rtt_ms": {
+            "min": 0.069369,
+            "mean": 0.22995176315789473,
+            "p50": 0.181897,
+            "p95": 0.450625,
+            "p99": 0.579398,
+            "p999": 0.623379,
+            "max": 0.623379
+          }
+        },
+        "post_restore": {
+          "samples": 612,
+          "successful_echoes": 612,
+          "missing_or_invalid_echoes": 0,
+          "application_echo_failure_ratio": 0.0,
+          "rtt_ms": {
+            "min": 0.069463,
+            "mean": 0.29415329411764707,
+            "p50": 0.310844,
+            "p95": 0.516142,
+            "p99": 0.673255,
+            "p999": 0.975442,
+            "max": 0.975442
+          }
+        }
+      },
+      "missed_probes": [
+        {
+          "sequence": 296,
+          "outcome": "timeout",
+          "offset_s": 6.002654,
+          "approx_ms_after_stop_request": 150.654,
+          "approx_ms_after_stop_command_finished": -211.346
+        }
+      ],
+      "approx_stop_at_s": 5.852,
+      "approx_restore_finished_at_s": 11.486,
+      "evidence_sha256": {
+        "bgp-failover-udp.json": "37526f895f6df6b79b75548b057b8f7bbee536b8e6d89b9cc1fefbe534c0561a",
+        "bgp-failover-udp.csv": "2de8a1aaaca744499fe867a3992dcccff4f4422d23372cd9159262573fb4f3cf",
+        "bgp-failover-udp-events.json": "5dee6d9fb613d2d4b62c5b90816883bee446e8002aa4f0e112113645ae72b0e7"
+      },
+      "bundle_sha256": "3ce33235318600508f280ff3d65bda7534c5a53627810765d3a0a52acffb528b",
+      "validation": "PASS"
+    },
+    {
+      "run_id": "trial-set-01-02",
+      "attempts": 1166,
+      "successes": 1165,
+      "unsuccessful": 1,
+      "failure_ratio": 0.000858,
+      "rtt_ms": {
+        "min": 0.065229,
+        "mean": 0.2853274635193133,
+        "p50": 0.297274,
+        "p95": 0.497678,
+        "p99": 0.736688,
+        "p999": 1.089413,
+        "max": 1.206152
+      },
+      "phase_counts": {
+        "pre_stop": {
+          "samples": 286,
+          "successful_echoes": 286,
+          "missing_or_invalid_echoes": 0,
+          "application_echo_failure_ratio": 0.0,
+          "rtt_ms": {
+            "min": 0.069243,
+            "mean": 0.2865576958041958,
+            "p50": 0.309382,
+            "p95": 0.462397,
+            "p99": 0.960231,
+            "p999": 1.206152,
+            "max": 1.206152
+          }
+        },
+        "stop_to_restore_finished": {
+          "samples": 270,
+          "successful_echoes": 269,
+          "missing_or_invalid_echoes": 1,
+          "application_echo_failure_ratio": 0.003704,
+          "rtt_ms": {
+            "min": 0.073478,
+            "mean": 0.2536615092936803,
+            "p50": 0.233436,
+            "p95": 0.485469,
+            "p99": 0.669537,
+            "p999": 0.775445,
+            "max": 0.775445
+          }
+        },
+        "post_restore": {
+          "samples": 610,
+          "successful_echoes": 610,
+          "missing_or_invalid_echoes": 0,
+          "application_echo_failure_ratio": 0.0,
+          "rtt_ms": {
+            "min": 0.065229,
+            "mean": 0.29871483278688526,
+            "p50": 0.319365,
+            "p95": 0.50389,
+            "p99": 0.761141,
+            "p999": 1.089413,
+            "max": 1.089413
+          }
+        }
+      },
+      "missed_probes": [
+        {
+          "sequence": 295,
+          "outcome": "timeout",
+          "offset_s": 6.025972,
+          "approx_ms_after_stop_request": 182.972,
+          "approx_ms_after_stop_command_finished": -239.028
+        }
+      ],
+      "approx_stop_at_s": 5.843,
+      "approx_restore_finished_at_s": 11.544,
+      "evidence_sha256": {
+        "bgp-failover-udp.json": "d45bd2426a39c066d38d8b28686708641fc1a1c4080c601ae2d3c687b63dd94f",
+        "bgp-failover-udp.csv": "b0efa2f2fe967f565caccb8f053f0a8fda0eb3b49aa946877443267cb9b4fc0a",
+        "bgp-failover-udp-events.json": "1f1ca6fff0f1cdfc4c5e65c61ba86329c91357236163ce299e3817600f49c394"
+      },
+      "bundle_sha256": "262020f94b29f115fe3a1dab22c74bd914e660071e272b06952de2866591ae73",
+      "validation": "PASS"
+    }
+  ],
+  "run_level_median_p99_rtt_ms": 0.6800335,
+  "series_sha256": "9d5f071507b1112e313be69d2d475d968460763814a0477061ff9d00ae564320",
+  "evidence_integrity": "byte-identical loose and nested raw files, original bundle hash checks and reconstructed summary match",
+  "limitations": [
+    "Two runs do not establish high-confidence statistical repeatability or causality.",
+    "Packet misses are application echo timeouts, not confirmed physical loss.",
+    "Correlating Windows fault UTC and Linux container probe UTC is approximate; no PTP/hardware timestamps.",
+    "Userspace sequential RTT is not one-way latency or sustained HFT throughput.",
+    "This report does not measure BGP control-plane convergence or actual network outage duration.",
+    "Release contains verified aggregate findings only; original raw data is not embedded."
+  ]
+}
