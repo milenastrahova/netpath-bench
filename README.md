@@ -36,6 +36,10 @@ Four original data-checked UDP experiment runs on **28 October 2026**, 64-byte p
 
 An independent workstation run confirmed Docker build, C++ `SELFTEST PASS`, **500/500 UDP echoes** and **500/500 TCP echoes**, with zero application timeouts in each short trial. Measured p99 RTT was **0.320 ms (UDP)** and **0.306 ms (TCP)** inside the isolated NetPath Bench Docker network. **The original 1,000 CSV samples have now been independently audited** against the two JSON reports; the raw ZIP is retained privately. The original archive and member SHA-256 hashes are in the [verification report](docs/windows-docker-benchmark-2026-10-29.md). To reproduce with the same original ZIP: `python scripts/verify_standalone_evidence.py NetPath_Evidence.zip`. The script does not touch any network. [Read the complete reproducibility report](docs/windows-docker-benchmark-2026-10-29.md).
 
+## Successful four-AS routed UDP pilot — 30 October 2026
+
+An operator-supplied Windows/Docker run recorded **737/737 UDP application echoes with zero timeouts in a 15-second pilot** across Edge and Core via the separate four-AS FRRouting lab. This is screenshot-confirmed execution; the raw JSON/CSV/events still require independent review. [Pilot verification record](docs/windows-bgp-routed-pilot-2026-10-30.md).
+
 ## Next study: repeated BGP-routed baseline and failover
 
 The [operator protocol](docs/reproducible-bgp-study.md) explains a reproducible 3-control / 3-controlled-fault study connecting **NetPath Bench** and **BGP Routing Laboratory**. It preserves source reports and checks primary recovery after every fault. This is a **planned new study**, not a completed new data set. Failover is opt-in and limited to the isolated Docker lab.
