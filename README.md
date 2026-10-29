@@ -42,7 +42,7 @@ An operator-supplied Windows/Docker run recorded **737/737 UDP application echoe
 
 ## Next study: repeated BGP-routed baseline and failover
 
-The [operator protocol](docs/reproducible-bgp-study.md) explains a reproducible 3-control / 3-controlled-fault study connecting **NetPath Bench** and **BGP Routing Laboratory**. It preserves source reports and checks primary recovery after every fault. This is a **planned new study**, not a completed new data set. Failover is opt-in and limited to the isolated Docker lab.
+The [operator protocol](docs/reproducible-bgp-study.md) explains a reproducible 3-control / 3-controlled-fault study connecting **NetPath Bench** and **BGP Routing Laboratory**. It preserves source reports and checks primary recovery after every fault. The **first new three-run no-fault control series has now completed** (30 October 2026): 3,535/3,535 application UDP echoes with no unsuccessful replies, with healthy BGP checks before and after each trial. This result is corroborated by operator PowerShell output; original trial bundles and p99 values have not been independently reviewed for this series. Three corresponding fault-injection trials remain **pending**. Failover is opt-in and limited to the isolated Docker lab.
 
 ## Reproduce a standalone benchmark
 
