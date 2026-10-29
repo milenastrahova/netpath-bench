@@ -1,10 +1,10 @@
 # NetPath Bench — TCP/UDP Latency and Network Resilience Lab
 
-**v1.0 release candidate · C++17 · CMake · TCP/UDP · Docker Desktop · FRRouting namespace integration · Python offline analysis**
+**v1.0 validated laboratory release · C++17 · CMake · TCP/UDP · Docker Desktop · FRRouting namespace integration · Python offline analysis**
 
 > **Independent educational networking lab, not commercial infrastructure operations.** All numbers originate from actual executions. A user-space echo RTT is not one-way wire latency, and a missing UDP echo is not proof of on-wire packet loss. No unverified production-network benchmarks are claimed.
 
-## v1.0 release candidate — original-data audit of no-fault and injected-outage conditions
+## v1.0 — original-data audit of no-fault and injected-outage conditions
 
 **Latest independently checked field results (28 October 2026):** two no-fault control runs (2,353/2,353 application echo replies) and two injected-primary-outage runs (2,332/2,334 replies). Parameters match: UDP, 24 seconds, 20 ms send interval, 200 ms timeout, 64-byte payload, Edge-to-Core FRRouting namespace path. Run-level median p99 of **successful** RTT: 0.800839 ms control versus 0.680034 ms injected fault. The fault group has two missing echoes and a lower successful-RTT p99; neither proves precise convergence, physical packet loss, performance improvement or causality.
 
@@ -16,7 +16,7 @@ py -3 -m unittest discover -s tests -p "test_*.py" -v
 docker compose build
 ```
 
-The ZIP paths are examples; point them to the locations of your own evidence archives. The audit runs **offline**, never stops routers, and refuses to overwrite an existing report folder. See [verified comparison](docs/verified-conditions-2026-10-28.md) and [release quality gates](docs/validation-v1.0.md). The release candidate still requires **Windows test acceptance and GitHub-hosted CI** before being called a fully validated v1.0 release.
+The ZIP paths are examples; point them to the locations of your own evidence archives. The audit runs **offline**, never stops routers, and refuses to overwrite an existing report folder. See [verified comparison](docs/verified-conditions-2026-10-28.md) and [release quality gates](docs/validation-v1.0.md). Windows Python tests and the GitHub Actions cross-platform build/test matrix have since passed (October 28, 2026). This remains a laboratory release, not production-rated HFT infrastructure.
 
 ## Engineering objective
 
@@ -41,7 +41,7 @@ The project does **not** claim nanosecond timing, production-network performance
 | Linux namespace binding | `--source-ip`, `serve --bind`, Docker `--network container:...` | Code tested; BGP Docker path field-tested (Oct 2026) |
 | BGP-routed trial | Python orchestrator with opt-in primary stop, try/finally restoration | Validated in the v0.2.1 Windows lab; v0.4 repeat-run trial verified with two real runs |
 | Offline phase analysis | Validate JSON+CSV, approximate before/stop/after summaries | Built / offline tested |
-| GitHub Actions | Ubuntu/Windows + Python 3.10/3.13 matrix | Defined; remote CI **pending** |
+| GitHub Actions | Ubuntu/Windows + Python 3.10/3.13 matrix | PASS (October 28, 2026) |
 
 ## Windows 11: first local benchmark (no Windows networking changes)
 
@@ -133,7 +133,7 @@ See [metrics methodology](docs/metrics-and-limitations.md), [BGP routed experime
 ## Release validation status
 
 - **Verified locally in the assistant's Linux environment:** GCC C++17 compilation, CTest selftest and actual TCP/UDP loopback integration, Python offline tests, independent offline summary on actual loopback data. This is not user hardware benchmarking.
-- **Validated by the user in v0.2.1:** Docker on Windows 11, a 500-probe TCP echo run, a 500-probe UDP echo run, FRR-routed UDP baseline (736/736 successful) and one FRR-routed 24-second controlled failover (1165/1166 successful echoes). **Repeated run and control orchestrators field-tested through v0.6:** two injected-outage and two no-fault trials; all original series files later independently audited. Hosted GitHub CI and native MSVC compilation of the latest release candidate are still pending.
+- **Validated by the user in v0.2.1:** Docker on Windows 11, a 500-probe TCP echo run, a 500-probe UDP echo run, FRR-routed UDP baseline (736/736 successful) and one FRR-routed 24-second controlled failover (1165/1166 successful echoes). **Repeated run and control orchestrators field-tested through v0.6:** two injected-outage and two no-fault trials; all original series files later independently audited. Hosted GitHub CI has passed the Ubuntu/Windows C++ and Python matrix and Alpine Docker smoke tests for this revision.
 - **Next independent capability, not asserted by v1.0:** packet capture and receiver-side UDP sequence/loss/reordering under concurrent traffic; hardware/NIC performance requires other infrastructure.
 
 MIT license. Engineering portfolio project, developed and described as an educational laboratory.
@@ -244,3 +244,7 @@ screenshots are not embedded in this source archive.
 The v0.6 no-fault control collector was field-tested on Windows 11 with two BGP-routed UDP samplesets: **1175/1175** and **1178/1178** successful application echoes, with routing checks before and after each run. The same FRRouting lab previously produced two opt-in primary-fault runs: **1167/1168** and **1165/1166** echoes. Independent auditing of original files confirmed the four results and consistency of experimental settings. See `docs/verified-conditions-2026-10-28.md`.
 
 The new v1.0 RC comparison audit is validated in the assistant-side Linux environment, but **requires a final Windows run and GitHub Actions acceptance** before claiming that the complete v1.0 workflow is cross-platform validated.
+
+## Additional read-only Linux diagnostics
+
+See [Linux network performance runbook](docs/linux-network-performance.md) for the optional `scripts/linux_net_diagnostics.py` command and [portfolio evidence](docs/portfolio-evidence.md) for an interview-ready account of actual results and limitations. The Linux tool reads counters, does not alter system settings, and does not claim physical NIC latency.

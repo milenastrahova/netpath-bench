@@ -1,4 +1,4 @@
-# NetPath Bench v1.0 Release Candidate — Quality and Acceptance
+# NetPath Bench v1.0 — Quality and Acceptance
 
 ## Confirmed from user-supplied evidence (28 October 2026)
 
@@ -20,10 +20,10 @@
 - [x] Assistant-side Linux CMake/C++ selftest and real loopback integration test.
 - [x] Full original evidence verification on four user-supplied experimental runs.
 - [x] Original field archives excluded from source release; portable aggregates only.
-- [ ] User's Windows 11 / Python verification of the release candidate.
+- [x] User's Windows 11 / Python verification: 71 tests passed (October 28, 2026).
 - [ ] User's Windows Docker Desktop image selftest of the release candidate (same C++ core was field-validated in earlier release).
-- [ ] Hosted GitHub Actions for Ubuntu and Windows matrix, including Docker smoke.
-- [ ] Private repository creation and publication.
+- [x] Hosted GitHub Actions for Ubuntu and Windows matrix, including Docker smoke, completed successfully: https://github.com/milenastrahova/netpath-bench/actions/runs/40741739406
+- [x] Private repository created and source published.
 
 ## Reproduction
 
@@ -33,3 +33,7 @@ py -3 .\scripts\audit_conditions.py --control-zip 'PATH_TO_CONTROL.zip' --failov
 ```
 
 Avoid committing raw CSVs, timestamped events, diagnostic logs or personal paths. This is a controlled lab project, not commercial or production HFT experience.
+
+## Optional instrumentation added after initial acceptance
+
+Read-only Linux interface and namespace counters are now collected by `scripts/linux_net_diagnostics.py`. Validation of that extension is tracked by the added Python unit tests and subsequent GitHub Actions run. **No physical NIC data or performance improvement is claimed.**
