@@ -248,3 +248,7 @@ The new v1.0 RC comparison audit is validated in the assistant-side Linux enviro
 ## Additional read-only Linux diagnostics
 
 See [Linux network performance runbook](docs/linux-network-performance.md) for the optional `scripts/linux_net_diagnostics.py` command and [portfolio evidence](docs/portfolio-evidence.md) for an interview-ready account of actual results and limitations. The Linux tool reads counters, does not alter system settings, and does not claim physical NIC latency.
+
+## Synthetic market-data feed continuity study
+
+A new [UDP market-data sequence-continuity laboratory](docs/market-data-feed-lab.md) exercises real loopback sockets, missing sequence observations, duplicates and late recovery. It is original educational protocol code, **not a real exchange feed**. Run: `python scripts/market_data_feed_lab.py demo --count 80`. An optional multicast listener is available but not claimed production-tested.
