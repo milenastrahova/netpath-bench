@@ -1,4 +1,4 @@
-# Windows Docker TCP/UDP loopback benchmark — 29 October 2026
+# Windows Docker bridge TCP/UDP benchmark — 29 October 2026
 
 **Origin:** PowerShell screenshots supplied by the workstation operator on 29 October 2026. All numbers below were read from the program's printed JSON. **Raw `reports/udp.json`, `reports/tcp.json` and corresponding CSV files have not been provided for an independent record-level audit.** This is a user-observed local execution report, not a published evidence bundle.
 
