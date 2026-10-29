@@ -71,13 +71,35 @@ The operator completed the **no-fault control** half of the proposed study on Wi
 
 The controller printed BGP healthy checks **before and after every run**, a verified report bundle for each run, and `PASS: 3 no-fault runs, verified original sample files`. The saved local series directory is `reports/control-ctrl261030004525/` on the operator's workstation. The original per-probe ZIP/JSON/CSV evidence and p99 values were **not independently supplied for this entry**; no numerical p99 or source SHA-256 is claimed on the basis of this screenshot alone.
 
-**Pending:** matched deliberate-fault trials and independent cross-condition inspection of the source evidence. A healthy 3/3 control series is a useful baseline, not proof of failover performance or physical-network zero-loss operation.
+**Completed subsequently:** the three deliberate-fault trials listed in the following section. **Pending:** independent cross-condition verification of the original CSV/JSON/event evidence. This control result alone does not prove zero physical packet loss.
+
+## Operator fault-injection series — 30 October 2026 (terminal evidence)
+
+The operator completed three additional 24-second **deliberate primary-transit outage** runs in the same four-AS FRRouting Docker laboratory using `scripts/repeat_failover.py`, with `--fault-at 6`, `--fault-seconds 5`, `--interval-us 20000`, `--timeout-ms 200` and explicit `--allow-primary-stop`. Per-run results printed in the supplied PowerShell screenshots:
+
+| Run | UDP attempts | Unsuccessful application echoes | Successful echoes |
+| --- | ---: | ---: | ---: |
+| Failover 1 | 1,169 | 1 | 1,168 |
+| Failover 2 | 1,172 | 1 | 1,171 |
+| Failover 3 | 1,172 | 1 | 1,171 |
+| **Total** | **3,513** | **3** | **3,510** |
+
+The script printed `VERIFIED` for all three runs and `PASS: 3 independent runs`. It checked baseline health before each fault and BGP restoration after each fault. A separate final operator `labctl.py check --timeout 120` also passed: eight eBGP neighbor perspectives Established, edge/core primary preference, and sourced two-way ICMP. Source files reside in `reports/series-fault261030005336/` on the workstation.
+
+### Side-by-side outcomes (operator screenshots)
+
+| Condition | Runs | Attempted UDP application echoes | Unsuccessful echoes | Observed application echo failure ratio |
+| --- | ---: | ---: | ---: | ---: |
+| No-fault controls | 3 | 3,535 | 0 | 0/3,535 = 0% |
+| Controlled primary outages | 3 | 3,513 | 3 | 3/3,513 = **0.0854%** |
+
+**Evidence status:** counts and command completion come from screenshots of the program. The underlying original per-probe JSON/CSV/events and series ZIP bundles are **not yet independently reviewed** for this new study; numerical RTT percentiles, timestamps, source SHA-256 and packet-level downtime remain unverified until that review. The screenshot shows three unsuccessful application echoes, not confirmed physical wire packet loss. This two-condition test was sequential (all controls before outages), so it does not prove causality or generalizable SLA behavior.
 
 ## Expected artifacts (not hypothetical results)
 
-When completed, `reports/control-hft1030ctl/` and `reports/series-hft1030fau/` contain original report triples, per-trial ZIPs, and series summaries. File hashes are computed by the scripts. Do not overwrite or selectively delete these files.
+The completed local study uses `reports/control-ctrl261030004525/` and `reports/series-fault261030005336/`, containing original report triples, per-trial ZIPs, and series summaries. File hashes are computed by the scripts. Do not overwrite or selectively delete these files.
 
-An actual result is recorded **only after the operator executes these commands and the source reports have been reviewed**. The planned test is not completed merely because CI passes on the scripts.
+Both sets were executed and terminal results are documented above. An **independent full-file audit is still pending**; do not label these measurements as independently verified source-level results until original bundles have been inspected.
 
 ## Reporting contract
 
