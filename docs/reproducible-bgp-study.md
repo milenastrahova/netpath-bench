@@ -95,6 +95,10 @@ The script printed `VERIFIED` for all three runs and `PASS: 3 independent runs`.
 
 **Evidence status:** counts and command completion come from screenshots of the program. The underlying original per-probe JSON/CSV/events and series ZIP bundles are **not yet independently reviewed** for this new study; numerical RTT percentiles, timestamps, source SHA-256 and packet-level downtime remain unverified until that review. The screenshot shows three unsuccessful application echoes, not confirmed physical wire packet loss. This two-condition test was sequential (all controls before outages), so it does not prove causality or generalizable SLA behavior.
 
+## Original evidence audit — completed
+
+The operator supplied all **three original series archives**. All nine per-probe CSV/JSON/events triplets and nested per-run ZIP bundles passed independent source checking. Results: **7,067/7,067** control echoes, **3,510/3,513** fault echoes; source-level timeouts at sequence **294**, **295**, **297**, in the approximate primary-stop windows. Per-run mean, p50/p95/p99/p99.9/max and data-integrity checks match. [Read the complete independent audit](bgp-nine-run-source-audit-2026-10-30.md) and its [machine-readable summary](../evidence/bgp-nine-run-audit-2026-10-30.json). This supersedes earlier notes saying that the raw trial bundles had not yet been independently reviewed.
+
 ## Expected artifacts (not hypothetical results)
 
 The completed local study uses `reports/control-ctrl261030004525/` and `reports/series-fault261030005336/`, containing original report triples, per-trial ZIPs, and series summaries. File hashes are computed by the scripts. Do not overwrite or selectively delete these files.

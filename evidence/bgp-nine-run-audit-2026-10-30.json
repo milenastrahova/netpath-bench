@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "title": "Nine-run four-AS FRRouting UDP application echo audit",
+  "audit_status": "PASS",
+  "audit_method": "independent examination of 3 original operator-provided source ZIPs including 9 nested ZIPs, all CSV/JSON/events",
+  "source_archives": [
+    {
+      "name": "control-ctrl261030004525.zip",
+      "sha256": "a9f09a30f4910fe8bd0788e027b054d32dde0f333cf077b57c2064e130d07590",
+      "runs": 3
+    },
+    {
+      "name": "control-ctrl261030005946.zip",
+      "sha256": "6754eef753fef16440d6d7dd5d1309e76b1f6bb7b71757f3700887a30f6a9dc5",
+      "runs": 3
+    },
+    {
+      "name": "series-fault261030005336.zip",
+      "sha256": "c0ab5f309db70545eef5d0235adc5c73a5a30da0e186990f0c304d91fdef6f92",
+      "runs": 3
+    }
+  ],
+  "experiment": {
+    "protocol": "udp",
+    "payload_bytes": 64,
+    "duration_seconds": 24,
+    "issue_interval_us": 20000,
+    "timeout_ms": 200,
+    "source_ip": "10.10.10.1",
+    "destination_ip": "10.40.40.1",
+    "virtual_environment": "Docker Desktop/Linux engine with FRRouting four-AS lab",
+    "fault_at_seconds": 6,
+    "fault_seconds": 5
+  },
+  "totals": {
+    "runs": 9,
+    "attempts": 10580,
+    "successful": 10577,
+    "unsuccessful": 3,
+    "control": {
+      "runs": 6,
+      "attempts": 7067,
+      "successes": 7067,
+      "timeouts": 0,
+      "runLevelMedianP99Ms": 0.6330965
+    },
+    "failover": {
+      "runs": 3,
+      "attempts": 3513,
+      "successes": 3510,
+      "timeouts": 3,
+      "runLevelMedianP99Ms": 0.583104,
+      "failureRatio": 0.0008539709649871904
+    }
+  },
+  "runs": [
+    {
+      "run_id": "ctrl261030004525-01",
+      "condition": "control",
+      "attempted": 1179,
+      "successful": 1179,
+      "timeouts": 0,
+      "rtt_ms": {
+        "mean": 0.236843,
+        "p50": 0.188995,
+        "p95": 0.482193,
+        "p99": 0.67001,
+        "p999": 1.160007,
+        "max": 1.192101
+      },
+      "raw_csv_sha256": "6fe4d2904bd507aad26360159a032239839fbba7073869cbb9643877cb726e4e"
+    },
+    {
+      "run_id": "ctrl261030004525-02",
+      "condition": "control",
+      "attempted": 1178,
+      "successful": 1178,
+      "timeouts": 0,
+      "rtt_ms": {
+        "mean": 0.242743,
+        "p50": 0.218198,
+        "p95": 0.451906,
+        "p99": 0.635133,
+        "p999": 1.002238,
+        "max": 1.139199
+      },
+      "raw_csv_sha256": "f013025d49155df9ac3866951ed189e6f9d4aa8738a8c1aca9c49ace45f33803"
+    },
+    {
+      "run_id": "ctrl261030004525-03",
+      "condition": "control",
+      "attempted": 1178,
+      "successful": 1178,
+      "timeouts": 0,
+      "rtt_ms": {
+        "mean": 0.242232,
+        "p50": 0.214218,
+        "p95": 0.454775,
+        "p99": 0.625558,
+        "p999": 0.994003,
+        "max": 1.085831
+      },
+      "raw_csv_sha256": "4c47158f69235a6f00e1dfc2577638f42f89e033edc53a7a0853b2a61ad34eba"
+    },
+    {
+      "run_id": "ctrl261030005946-01",
+      "condition": "control",
+      "attempted": 1176,
+      "successful": 1176,
+      "timeouts": 0,
+      "rtt_ms": {
+        "mean": 0.271759,
+        "p50": 0.259331,
+        "p95": 0.506778,
+        "p99": 0.63106,
+        "p999": 0.995366,
+        "max": 1.015416
+      },
+      "raw_csv_sha256": "97e19289b13cb2af0827e6cf7e94aead63f4fa0d0897fd9900faa3899a80b018"
+    },
+    {
+      "run_id": "ctrl261030005946-02",
+      "condition": "control",
+      "attempted": 1179,
+      "successful": 1179,
+      "timeouts": 0,
+      "rtt_ms": {
+        "mean": 0.23505,
+        "p50": 0.193785,
+        "p95": 0.481608,
+        "p99": 0.755299,
+        "p999": 1.079978,
+        "max": 1.332409
+      },
+      "raw_csv_sha256": "602bacc8b6a587880d482ab258abd234e4cc8a3c762be090a316f481b4c5066d"
+    },
+    {
+      "run_id": "ctrl261030005946-03",
+      "condition": "control",
+      "attempted": 1177,
+      "successful": 1177,
+      "timeouts": 0,
+      "rtt_ms": {
+        "mean": 0.261932,
+        "p50": 0.245025,
+        "p95": 0.49639,
+        "p99": 0.630021,
+        "p999": 0.739394,
+        "max": 0.843482
+      },
+      "raw_csv_sha256": "553af4d95cbaea32be838be28406a7b58a76e8e4e3409a0f6312cde044c99914"
+    },
+    {
+      "run_id": "fault261030005336-01",
+      "condition": "failover",
+      "attempted": 1169,
+      "successful": 1168,
+      "timeouts": 1,
+      "rtt_ms": {
+        "mean": 0.23479,
+        "p50": 0.207364,
+        "p95": 0.458634,
+        "p99": 0.693676,
+        "p999": 1.028998,
+        "max": 1.186988
+      },
+      "raw_csv_sha256": "40ecefc66a11f1832f3dcb24142c01df72ffae5c0d9a30c9190663a947c4a868",
+      "missed_sequence": 294,
+      "missed_offset_ms": 5997.103319
+    },
+    {
+      "run_id": "fault261030005336-02",
+      "condition": "failover",
+      "attempted": 1172,
+      "successful": 1171,
+      "timeouts": 1,
+      "rtt_ms": {
+        "mean": 0.190649,
+        "p50": 0.156449,
+        "p95": 0.390562,
+        "p99": 0.507498,
+        "p999": 0.678018,
+        "max": 0.811107
+      },
+      "raw_csv_sha256": "d0ead9dc2bfb312fd7cb0ce1fb9348d7bc3b3f245cce0685a6c6e6cde1eb837e",
+      "missed_sequence": 295,
+      "missed_offset_ms": 5990.758836
+    },
+    {
+      "run_id": "fault261030005336-03",
+      "condition": "failover",
+      "attempted": 1172,
+      "successful": 1171,
+      "timeouts": 1,
+      "rtt_ms": {
+        "mean": 0.194872,
+        "p50": 0.16157,
+        "p95": 0.388344,
+        "p99": 0.583104,
+        "p999": 0.785741,
+        "max": 0.799813
+      },
+      "raw_csv_sha256": "62e24e10422bec2f2bb7b696807468995f899c75a6f0f806e252e2e32651582f",
+      "missed_sequence": 297,
+      "missed_offset_ms": 6032.540561
+    }
+  ],
+  "limitations": [
+    "RTT percentiles over successful userspace echoes only",
+    "One missing application echo is not proof of physical wire packet loss",
+    "UTC event correlation is approximate and not synchronized NIC timestamping",
+    "All controls precede fault trials; causal speed comparisons are unsupported",
+    "This study does not measure production HFT or BGP convergence timing"
+  ]
+}
