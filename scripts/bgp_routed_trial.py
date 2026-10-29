@@ -16,7 +16,7 @@ import subprocess
 import sys
 import time
 
-IMAGE = "netpath-bench-lab:0.4"
+IMAGE = "netpath-bench-lab:1.0"
 SERVICES = {"edge", "core", "transit_primary", "transit_backup"}
 
 

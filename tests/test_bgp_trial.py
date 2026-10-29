@@ -34,6 +34,11 @@ class BgpTrialTests(unittest.TestCase):
             trial.parse_args(["--compose","test.yaml","--mode","failover", "--allow-primary-stop",
                               "--seconds","10", "--fault-at","7", "--fault-seconds","3"])
 
+    def test_routed_orchestrator_uses_current_image(self):
+        compose = (Path(__file__).resolve().parents[1] / "compose.yaml").read_text()
+        self.assertEqual(trial.IMAGE, "netpath-bench-lab:1.0")
+        self.assertIn("image: netpath-bench-lab:1.0", compose)
+
     def test_command_targets_exact_namespaces(self):
         with tempfile.TemporaryDirectory() as tmp:
             cmd = trial.make_probe_cmd(Path(tmp),run_name="trial", seconds=22,
