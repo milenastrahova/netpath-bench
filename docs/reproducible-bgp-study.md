@@ -58,6 +58,21 @@ Set-Location $bench
 
 If the fault script or a recovery check fails, **stop further injections**. Preserve the incomplete evidence and diagnose the lab before continuing. Do not count the absence of errors in the control plane as proof of continuous application availability.
 
+## Operator control series — 30 October 2026 (terminal evidence)
+
+The operator completed the **no-fault control** half of the proposed study on Windows 11 / Docker Desktop using `scripts/repeat_control.py` with **three 24-second runs**, `--interval-us 20000`, `--timeout-ms 200`, and the isolated four-AS BGP lab. The screenshots of the script's console output confirm:
+
+| Run | Application echo replies | Unsuccessful echoes |
+| --- | ---: | ---: |
+| Control 1 | 1,179 / 1,179 | 0 |
+| Control 2 | 1,178 / 1,178 | 0 |
+| Control 3 | 1,178 / 1,178 | 0 |
+| **Total** | **3,535 / 3,535** | **0** |
+
+The controller printed BGP healthy checks **before and after every run**, a verified report bundle for each run, and `PASS: 3 no-fault runs, verified original sample files`. The saved local series directory is `reports/control-ctrl261030004525/` on the operator's workstation. The original per-probe ZIP/JSON/CSV evidence and p99 values were **not independently supplied for this entry**; no numerical p99 or source SHA-256 is claimed on the basis of this screenshot alone.
+
+**Pending:** matched deliberate-fault trials and independent cross-condition inspection of the source evidence. A healthy 3/3 control series is a useful baseline, not proof of failover performance or physical-network zero-loss operation.
+
 ## Expected artifacts (not hypothetical results)
 
 When completed, `reports/control-hft1030ctl/` and `reports/series-hft1030fau/` contain original report triples, per-trial ZIPs, and series summaries. File hashes are computed by the scripts. Do not overwrite or selectively delete these files.
