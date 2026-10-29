@@ -32,6 +32,10 @@ Four original data-checked UDP experiment runs on **28 October 2026**, 64-byte p
 
 [Verified conditions and limitations](docs/verified-conditions-2026-10-28.md) · [Measurement methodology](docs/benchmark-methodology.md) · [Independent evidence audit](scripts/audit_conditions.py)
 
+## Operator validation — Windows Docker (29 October 2026)
+
+An independent workstation run confirmed Docker build, C++ `SELFTEST PASS`, **500/500 UDP echoes** and **500/500 TCP echoes**, with zero application timeouts in each short trial. Measured p99 RTT was **0.320 ms (UDP)** and **0.306 ms (TCP)** inside the isolated NetPath Bench Docker network. These figures come from the displayed CLI output; raw report files are not independently audited for this run. [Read the complete reproducibility report](docs/windows-docker-benchmark-2026-10-29.md).
+
 ## Reproduce a standalone benchmark
 
 On **Windows 11 + Docker Desktop with Linux containers**, from this repository:
