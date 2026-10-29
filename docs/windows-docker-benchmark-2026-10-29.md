@@ -1,6 +1,6 @@
 # Windows Docker bridge TCP/UDP benchmark — 29 October 2026
 
-**Origin:** PowerShell screenshots supplied by the workstation operator on 29 October 2026. All numbers below were read from the program's printed JSON. **Raw `reports/udp.json`, `reports/tcp.json` and corresponding CSV files have not been provided for an independent record-level audit.** This is a user-observed local execution report, not a published evidence bundle.
+**Origin and verification:** The workstation operator supplied both the original PowerShell screenshots and a ZIP containing `udp.json`, `udp.csv`, `tcp.json`, and `tcp.csv` on 29 October 2026. All **1,000** per-request records were parsed offline independently, and the program's reported mean, nearest-rank p50/p95/p99/p99.9, min/max, and adjacent absolute RTT difference statistics were reproduced from CSV. Counts and sequence numbers match. Source files are retained as an uploaded private ZIP, **not committed to this repository**; the immutable byte hashes below allow the operator to rerun and verify the checks. The hashes do not cryptographically prove the measurement environment or authorship.
 
 ## Environment and commands
 
@@ -19,6 +19,24 @@ docker compose down
 - `SELFTEST PASS: codec, invalid magic, quantile, null stats, CSV samples`.
 - Both live echo clients completed and produced JSON summaries and CSV output paths.
 - Final `docker compose down` removed the NetPath Bench server container and its dedicated network; the BGP Routing Laboratory is a separate Compose project and was not used for these two trials.
+
+## Independently verified raw-data consistency
+
+- **Verdict:** PASS for internal CSV/JSON consistency; **500 consecutive sequences** `0–499` for each of TCP and UDP, all `ok` with 0 timeouts, 0 errors and 0 unexpected replies. Monotonic offsets increase in both CSV files.
+- **UDP:** adjacent absolute RTT difference mean **0.033764 ms**, p99 **0.188683 ms**; largest RTT **1.008590 ms at sequence 453**, with only one UDP RTT above 0.5 ms.
+- **TCP:** adjacent absolute RTT difference mean **0.027293 ms**, p99 **0.198849 ms**; largest RTT **0.411629 ms at sequence 491**.
+- **Timestamp precision:** wall-clock UTC timestamps in the summary are displayed to the nearest millisecond, while `observation_duration_ms` has finer precision (UDP **594.271520 ms**, TCP **584.050000 ms**). Sub-millisecond disagreement from rounding is expected, not an inconsistency.
+- **Nearest-rank detail:** with 500 values, p99.9 selects the maximum (rank 500). This cannot justify a reliable 99.9th-percentile service-level claim.
+
+### SHA-256 source fingerprints
+
+| Evidence file | SHA-256 |
+| --- | --- |
+| Original `NetPath_Evidence.zip` | `9914f7a4cd7259f1f43b53644b3ba79320fc7f38d8665b8e0ebacdb951526d81` |
+| `udp.csv` | `6ac0de68c6300c0968fbbec2e25a84eb3c0665d94e8063d3d1a9bd51fe9bae0d` |
+| `udp.json` | `521a5096ea3ad5d8dba4e984c71ee1382531459abf7185cef7b6f188776cce67` |
+| `tcp.csv` | `98b88caf7c0d9022fa5d8c22766e1cd3fcfcbacc7859d1af491edf02719096e8` |
+| `tcp.json` | `d214090ce33c85ccfe138056ac0701ae72d98970d05de1fc366c32a4eadaf2aa` |
 
 ## Results visible in the output
 
@@ -51,10 +69,10 @@ Both runs reported zero `unexpected_replies`. The UDP run's start timestamp as p
 
 ## Next reproducibility step
 
-1. Preserve both local JSON and CSV outputs rather than taking only terminal screenshots.
+1. **Completed:** preserved the original JSON and CSV in `NetPath_Evidence.zip` and verified all 1,000 CSV records against JSON summaries. Keep the private ZIP unchanged as the archived original.
 2. Run repeated randomized or alternating UDP/TCP trials with identical payloads, counts and timeout settings; retain every raw sample, run order and environment version.
-3. Use existing scripts to check the original files' counts and consistency before publishing a minimized, scrubbed evidence bundle.
+3. Verify the SHA-256 source fingerprints and rerun the offline report checker before making a minimized, scrubbed evidence bundle publicly available.
 4. Keep the distinction between *application response missing by deadline* and actual physical packet loss.
 5. To study routed resilience, run the existing [isolated BGP path experiment](bgp-routed-experiment.md), not `docker compose down` or failure injection against an unrelated project.
 
-*Original evidence files remain on the operator's Windows workstation. No fabricated hash, CSV content, or post-hoc test result is attributed to this report.*
+*Source ZIP was supplied privately and independently checked; raw bytes remain outside the Git repository pending an intentional publication decision. All listed hashes are computed from the received original files. No claim of production performance, authorship authentication or physical packet loss is made.*
