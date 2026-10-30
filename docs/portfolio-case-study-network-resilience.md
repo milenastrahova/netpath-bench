@@ -43,6 +43,12 @@ The new [socket-buffer and packet-trace study](socket-buffer-and-packet-trace-st
 
 The **original six-run operator data** for the socket-buffer study has now been independently audited: **1,800 / 1,800** UDP loopback echoes matched within the 200 ms application timeout; **zero timeouts**. Per-run source CSV hashes and percentiles were recalculated. The larger-buffer profile gave a lower pooled p50 but mixed per-run p99 results, so no tail-latency optimization is claimed. See the [source-verified field report](socket-buffer-source-audit-2026-10-30.md) and [machine-readable audit](../evidence/socket-buffer-source-audit-2026-10-30.json).
 
+### Independently audited packet capture
+
+The user-run Docker loopback PCAP capture is now source-verified: **480/480 measured application replies**, **520/520 captured request/reply pairs** including warmup, and source manifest integrity on **8/8** files. Each original UDP frame was reconciled by NPS1 session, client/server port, sequence number and direction; no capture gaps or duplicate NPS1 frames were found. Application RTT and capture-timestamp deltas were reported separately.
+
+Review the [detailed PCAP source audit](pcap-loopback-source-verification-2026-10-30.md) and [structured evidence](../evidence/pcap-loopback-source-audit-2026-10-30.json).
+
 ## What is demonstrably implemented
 
 1. Routing policy reasoning and failover in an isolated four-AS topology.
