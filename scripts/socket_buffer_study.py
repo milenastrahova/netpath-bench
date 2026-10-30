@@ -78,6 +78,7 @@ def run_trial(profile: str, requested_buffer: int, count: int, interval_ms: floa
         server.bind(('127.0.0.1', server_port))
         client.bind(('127.0.0.1', 0))
         server_addr = server.getsockname()
+        client_addr = client.getsockname()
         server.settimeout(0.1)
         def responder():
             while not stopper.is_set():
@@ -125,6 +126,8 @@ def run_trial(profile: str, requested_buffer: int, count: int, interval_ms: floa
         raise RuntimeError(f'Responder failure: {server_errors or "thread did not stop"}')
     good = [row['rtt_us'] for row in samples if row['status'] == 'ok']
     summary = {
+        'capture_session_id': session, 'capture_client_port': client_addr[1],
+        'capture_server_port': server_addr[1], 'capture_warmup': warmup,
         'profile': profile, 'requested_socket_buffer': requested_buffer,
         'effective_socket_buffers': actual, 'attempted': count, 'replies': len(good),
         'application_timeouts': count - len(good), 'rtt_units': 'microseconds',
