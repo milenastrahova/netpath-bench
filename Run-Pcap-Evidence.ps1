@@ -11,7 +11,7 @@ try {
   if ($LASTEXITCODE -ne 0) { throw 'Docker Desktop is not running' }
   docker build -f Dockerfile.pcap -t netpath-pcap-evidence:local .
   if ($LASTEXITCODE -ne 0) { throw 'Docker image build failed' }
-  docker run --rm --network none --cap-drop ALL --cap-add NET_RAW -v "milenastrahova/netpath-bench:/work" -w /work netpath-pcap-evidence:local python scripts/run_pcap_capture.py --repetitions $Repetitions --count $Count
+  docker run --rm --network none --cap-drop ALL --cap-add NET_RAW --cap-add DAC_OVERRIDE -v "milenastrahova/netpath-bench:/work" -w /work netpath-pcap-evidence:local python scripts/run_pcap_capture.py --repetitions $Repetitions --count $Count
   if ($LASTEXITCODE -ne 0) { throw 'Capture failed. Check the output above; Windows network configuration is unchanged.' }
   Write-Host 'PASS: Evidence ZIP is in the reports directory.' -ForegroundColor Green
 } finally { Pop-Location }
