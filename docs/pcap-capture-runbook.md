@@ -12,7 +12,7 @@ git pull --ff-only
 powershell -NoProfile -ExecutionPolicy Bypass -File .\Run-Pcap-Evidence.ps1
 ```
 
-The launcher first builds a local Linux container from `Dockerfile.pcap` (Python 3.12 Alpine + tcpdump); downloading images/packages may require an Internet connection at build time. **The experiment container itself runs with `--network none --cap-drop ALL --cap-add NET_RAW --cap-add DAC_OVERRIDE`.** It cannot reach external networks, and the only capture is from `lo`, UDP port 19371.
+The launcher first builds a local Linux container from `Dockerfile.pcap` (Python 3.12 Alpine + tcpdump); downloading images/packages may require an Internet connection at build time. **The experiment container itself runs with `--network none --cap-drop ALL --cap-add NET_RAW --cap-add NET_ADMIN --cap-add DAC_OVERRIDE`.** It cannot reach external networks, and the only capture is from `lo`, UDP port 19371.
 
 Two baseline and two larger-buffer trials issue 120 measured UDP echo requests each, plus ten warmup requests per trial. The scripts produce a new non-overwriting evidence folder `reports/pcap-study-<UTC>-<random>/` and a ZIP of that folder. The existing repository `.gitignore` excludes `reports/`.
 
