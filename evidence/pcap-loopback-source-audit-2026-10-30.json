@@ -1,0 +1,113 @@
+{
+  "audit_status": "PASS",
+  "audit_date": "2026-10-30",
+  "method": "Independent source ZIP / SHA-256 manifest / CSV percentile / classic Ethernet IPv4 UDP PCAP / NPS1 request-reply pairing review",
+  "original_archive": {
+    "name": "pcap-study-20261030T132438Z-ce6faefd.zip",
+    "bytes": 18929,
+    "sha256": "d326d2a4242fa408fcaa7c2f55a1cb721d5c2799a154d65041357b47c68ac742",
+    "published": false
+  },
+  "source_pcap": {
+    "name": "udp-loopback.pcap",
+    "bytes": 126904,
+    "sha256": "2199b38a2108dbd69037dc9454a202e26fb85a4ea7ce19d9fea111475390967c",
+    "format": "classic Ethernet IPv4 UDP microsecond timestamps",
+    "published": false
+  },
+  "verified": {
+    "manifest_members": 8,
+    "manifest_hashes_valid": 8,
+    "pcap_frames": 1040,
+    "pcap_request_frames": 520,
+    "pcap_reply_frames": 520,
+    "complete_request_reply_pairs": 520,
+    "measured_application_attempts": 480,
+    "measured_application_replies": 480,
+    "application_timeouts": 0,
+    "warmup_exchanges": 40,
+    "unmatched_frames": 0,
+    "duplicate_nps1_frames": 0,
+    "unexpected_nps1_frames": 0
+  },
+  "runs": [
+    {
+      "repeat": 1,
+      "profile": "baseline",
+      "client_port": 39000,
+      "application_attempts": 120,
+      "replies": 120,
+      "timeouts": 0,
+      "rtt_p50_us": 68.514,
+      "rtt_p95_us": 103.874,
+      "rtt_p99_us": 128.921,
+      "rtt_max_us": 716.427,
+      "capture_delta_p50_us": 31,
+      "capture_delta_p99_us": 67
+    },
+    {
+      "repeat": 1,
+      "profile": "larger_buffer",
+      "client_port": 51727,
+      "application_attempts": 120,
+      "replies": 120,
+      "timeouts": 0,
+      "rtt_p50_us": 66.061,
+      "rtt_p95_us": 92.09,
+      "rtt_p99_us": 151.06,
+      "rtt_max_us": 218.835,
+      "capture_delta_p50_us": 31.5,
+      "capture_delta_p99_us": 92.54
+    },
+    {
+      "repeat": 2,
+      "profile": "larger_buffer",
+      "client_port": 48668,
+      "application_attempts": 120,
+      "replies": 120,
+      "timeouts": 0,
+      "rtt_p50_us": 67.942,
+      "rtt_p95_us": 117.504,
+      "rtt_p99_us": 129.042,
+      "rtt_max_us": 140.23,
+      "capture_delta_p50_us": 32,
+      "capture_delta_p99_us": 75.62
+    },
+    {
+      "repeat": 2,
+      "profile": "baseline",
+      "client_port": 47693,
+      "application_attempts": 120,
+      "replies": 120,
+      "timeouts": 0,
+      "rtt_p50_us": 66.714,
+      "rtt_p95_us": 120.294,
+      "rtt_p99_us": 198.175,
+      "rtt_max_us": 205.696,
+      "capture_delta_p50_us": 31.5,
+      "capture_delta_p99_us": 99
+    }
+  ],
+  "per_profile_pooled": {
+    "baseline": {
+      "successful_samples": 240,
+      "rtt_p50_us": 67.457,
+      "rtt_p95_us": 104.381,
+      "rtt_p99_us": 195.748,
+      "rtt_max_us": 716.427
+    },
+    "larger_buffer": {
+      "successful_samples": 240,
+      "rtt_p50_us": 67.168,
+      "rtt_p95_us": 100.93,
+      "rtt_p99_us": 137.265,
+      "rtt_max_us": 218.835
+    }
+  },
+  "scope_limitations": [
+    "Linux Docker/WSL2 loopback; no physical NIC/exchange/trading path",
+    "PCAP capture timestamps are not wire delay or the application's monotonically measured RTT",
+    "No causal buffer performance improvement established with two runs per condition",
+    "Raw captures remain outside public repository"
+  ]
+}
