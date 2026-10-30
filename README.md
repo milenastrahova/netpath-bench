@@ -56,6 +56,14 @@ The [operator protocol](docs/reproducible-bgp-study.md) explains a reproducible 
 
 [Complete source-verified report](docs/socket-buffer-source-audit-2026-10-30.md) · [Machine-readable audit](evidence/socket-buffer-source-audit-2026-10-30.json) · [Experiment source](scripts/socket_buffer_study.py)
 
+## Source-verified isolated UDP PCAP evidence — 30 October 2026
+
+**480/480** matching measured UDP application echoes across four Linux Docker-loopback runs, plus **40/40** warmup echoes. The uploaded original PCAP was independently decoded and reconciled: **1,040 captured UDP frames, 520 complete request/reply pairs, no unmatched or duplicate NPS1 observations, 8/8 source manifest SHA-256 checks passed**. Application p50/p95/p99 values were independently recalculated from the original CSVs.
+
+[Full packet-level technical case study](docs/pcap-loopback-source-verification-2026-10-30.md) · [Machine-readable source audit](evidence/pcap-loopback-source-audit-2026-10-30.json) · [Capture runbook](docs/pcap-capture-runbook.md)
+
+**Scope:** Self-generated loopback traffic inside Docker/WSL2, not physical NIC or exchange-network data. Comparing two socket-buffer profiles did not establish a repeatable p99 improvement. Raw PCAP remains private.
+
 ## Reproduce a standalone benchmark
 
 On **Windows 11 + Docker Desktop with Linux containers**, from this repository:
