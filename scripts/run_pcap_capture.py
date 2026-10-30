@@ -29,10 +29,13 @@ def stop_capture(proc):
         except subprocess.TimeoutExpired:
             proc.kill()
             proc.wait(timeout=3)
-    if proc.stderr: proc.stderr.close()
+    if proc.stderr:
+        report = proc.stderr.read()
+        if report.strip(): print('tcpdump:', report.strip()[-450:], flush=True)
+        proc.stderr.close()
 
 def start_capture(output, port):
-    args=['tcpdump','-i','lo','-p','-U','-s','0','-w',str(output),f'udp and port {port}']
+    args=['tcpdump','--immediate-mode','-i','lo','-p','-U','-s','0','-w',str(output),f'udp and port {port}']
     proc=subprocess.Popen(args,stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,
                           stderr=subprocess.PIPE,text=True,bufsize=1)
     selector=selectors.DefaultSelector()
@@ -71,6 +74,8 @@ def execute(output_root, repetitions, count, port):
         write_study(study_dir,repetitions,count,interval_ms=1.,timeout_ms=200,
                     warmup=10,server_port=port)
     finally:
+        # Let kernel capture buffers drain even for short CI trials before termination.
+        time.sleep(1.5)
         stop_capture(proc)
     if not capture.exists() or capture.stat().st_size<=24:
         raise RuntimeError('PCAP capture is missing or empty')
