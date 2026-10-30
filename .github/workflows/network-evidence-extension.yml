@@ -1,0 +1,44 @@
+name: Network evidence extension
+
+on:
+  push:
+    paths:
+      - 'scripts/socket_buffer_study.py'
+      - 'scripts/audit_socket_study.py'
+      - 'scripts/packet_trace_review.py'
+      - 'tests/test_network_performance_extension.py'
+      - '.github/workflows/network-evidence-extension.yml'
+  pull_request:
+    paths:
+      - 'scripts/socket_buffer_study.py'
+      - 'scripts/audit_socket_study.py'
+      - 'scripts/packet_trace_review.py'
+      - 'tests/test_network_performance_extension.py'
+      - '.github/workflows/network-evidence-extension.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit tests (synthetic PCAP + loopback + audit)
+        run: python -m unittest discover -s tests -p 'test_network_performance_extension.py' -v
+      - name: Short, bounded UDP socket experiment in CI Linux VM
+        run: python scripts/socket_buffer_study.py --output-dir ci-network-evidence --repetitions 2 --count 30 --timeout-ms 200
+      - name: Independent CSV/hash audit
+        run: python scripts/audit_socket_study.py ci-network-evidence/summary.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ci-loopback-evidence-not-production
+          path: ci-network-evidence/
+          if-no-files-found: ignore
+          retention-days: 7
