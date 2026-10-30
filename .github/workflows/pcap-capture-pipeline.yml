@@ -38,7 +38,7 @@ jobs:
       - name: Build isolated capture container
         run: docker build -f Dockerfile.pcap -t netpath-pcap-evidence:ci .
       - name: Capture real Linux loopback UDP in isolated container
-        run: docker run --rm --network none --cap-drop ALL --cap-add NET_RAW -v "$PWD:/work" -w /work netpath-pcap-evidence:ci python scripts/run_pcap_capture.py --repetitions 1 --count 20
+        run: docker run --rm --network none --cap-drop ALL --cap-add NET_RAW --cap-add DAC_OVERRIDE -v "$PWD:/work" -w /work netpath-pcap-evidence:ci python scripts/run_pcap_capture.py --repetitions 1 --count 20
       - name: Evidence presence check
         run: test -n "$(find reports -type f -name 'correlation.json' -print -quit)"
       - name: Retain short-lived test artifact
