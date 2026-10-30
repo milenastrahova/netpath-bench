@@ -41,6 +41,8 @@ Do not interpret these application timeouts as proof of physical wire packet los
 
 The new [socket-buffer and packet-trace study](socket-buffer-and-packet-trace-study.md) adds a **repeatable measurement method** and an independent CSV integrity audit. It measures process-local buffer variants in bounded Linux loopback trials, and can summarize an independently captured classic PCAP (TCP/UDP, timestamps, flow direction, sequence observations). It does not promise improved latency.
 
+The **original six-run operator data** for the socket-buffer study has now been independently audited: **1,800 / 1,800** UDP loopback echoes matched within the 200 ms application timeout; **zero timeouts**. Per-run source CSV hashes and percentiles were recalculated. The larger-buffer profile gave a lower pooled p50 but mixed per-run p99 results, so no tail-latency optimization is claimed. See the [source-verified field report](socket-buffer-source-audit-2026-10-30.md) and [machine-readable audit](../evidence/socket-buffer-source-audit-2026-10-30.json).
+
 ## What is demonstrably implemented
 
 1. Routing policy reasoning and failover in an isolated four-AS topology.
