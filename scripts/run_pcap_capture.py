@@ -63,7 +63,7 @@ def execute(output_root, repetitions, count, port):
     folder.mkdir(parents=True,exist_ok=False)
     capture=folder/'udp-loopback.pcap'
     study_dir=folder/'socket-study'
-    print('Starting scoped tcpdump on Docker lo UDP port',port,flush=True)
+    # Docker --network none may leave lo administratively DOWN. This alters only the container namespace.\n    subprocess.run(['ip', 'link', 'set', 'dev', 'lo', 'up'], check=True)\n    print('Starting scoped tcpdump on Docker lo UDP port',port,flush=True)
     proc=start_capture(capture,port)
     try:
         write_study(study_dir,repetitions,count,interval_ms=1.,timeout_ms=200,
