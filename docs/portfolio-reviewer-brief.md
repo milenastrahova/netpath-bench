@@ -29,6 +29,12 @@ See [nine-run source audit](bgp-nine-run-source-audit-2026-10-30.md) and [NetPat
 
 **Interpretation:** These are application-level requests/replies and user-space RTT inside Docker; they are not physical wire loss, one-way NIC latency, PTP measurements, or precisely measured BGP convergence. A success-only p99 number can look better during failure because timed-out requests are excluded.
 
+## Independently audited Linux UDP socket-buffer study
+
+A separate, operator-run Docker/WSL2 experiment tested two process-local socket-buffer profiles across **six trials / 1,800 UDP echo requests**. All **1,800 replies matched**, with **zero application timeouts**. Original CSV rows, per-run p50/p95/p99 and SHA-256 hashes were independently reconciled to the source metadata. The larger-buffer profile produced a lower pooled p50 but **no consistent improvement in per-run p99**. This demonstrates evidence integrity and careful tail-latency interpretation, not physical NIC tuning.
+
+[Read full six-run source audit](socket-buffer-source-audit-2026-10-30.md) · [Machine-readable report](../evidence/socket-buffer-source-audit-2026-10-30.json)
+
 ## Engineering decisions worth reviewing
 
 **Route selection ≠ lowest latency.** Local Preference determines administrative routing policy; verifying traffic requires checking the forwarding table and application behavior separately.

@@ -1,0 +1,161 @@
+{
+  "audit_schema_version": 1,
+  "report_date": "2026-10-30",
+  "experiment": "Linux UDP loopback socket buffer A/B study in Docker/WSL2",
+  "evidence": "independently recomputed from original operator-supplied CSV and summary.json archive",
+  "original_archive_name": "socket-buffer-evidence.zip",
+  "original_archive_sha256": "1f8f928081471f7edfd7d7aded8c30952dfd27d3a640cd3b9106291be0ce7e3c",
+  "original_summary_json_sha256": "8f9107946717e774ca2e3a78e6b3fb15d018cd8dcdd733b9a5c87554d6d87cb7",
+  "raw_archive_committed": false,
+  "tested_platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with",
+  "python_version": "3.12.16",
+  "configuration": {
+    "repetitions_per_profile": 3,
+    "samples_per_trial": 300,
+    "warmup_per_trial": 10,
+    "interval_ms": 1,
+    "timeout_ms": 200,
+    "application_payload_bytes": 64,
+    "trial_order": "AB/BA/AB"
+  },
+  "profile_requested_and_effective_socket_bytes": {
+    "baseline": {
+      "requested": 65536,
+      "effective": 131072
+    },
+    "larger_buffer": {
+      "requested": 524288,
+      "effective": 1048576
+    }
+  },
+  "all_runs_totals": {
+    "attempts": 1800,
+    "matched_replies": 1800,
+    "application_timeouts": 0
+  },
+  "runs": [
+    {
+      "repetition": 1,
+      "profile": "baseline",
+      "csv_file": "01_baseline.csv",
+      "attempts": 300,
+      "matched_replies": 300,
+      "application_timeouts": 0,
+      "p50_us": 123.849,
+      "p95_us": 250.105,
+      "p99_us": 360.056,
+      "max_us": 468.275,
+      "csv_sha256": "43190ad663446f33080dddb560754bba23f6a38f2162e67aee2d5303e5d548c4"
+    },
+    {
+      "repetition": 1,
+      "profile": "larger_buffer",
+      "csv_file": "01_larger_buffer.csv",
+      "attempts": 300,
+      "matched_replies": 300,
+      "application_timeouts": 0,
+      "p50_us": 96.86,
+      "p95_us": 215.958,
+      "p99_us": 404.354,
+      "max_us": 595.564,
+      "csv_sha256": "5b5d7e674ebc9634fcb1dd428118dec7b1547a8b0728bb8bca580e2369787153"
+    },
+    {
+      "repetition": 2,
+      "profile": "larger_buffer",
+      "csv_file": "02_larger_buffer.csv",
+      "attempts": 300,
+      "matched_replies": 300,
+      "application_timeouts": 0,
+      "p50_us": 111.059,
+      "p95_us": 254.889,
+      "p99_us": 410.226,
+      "max_us": 624.816,
+      "csv_sha256": "83948a8ad7e8575f2917cd70179dc72dda69318c5629acf1a5981f694f3da34a"
+    },
+    {
+      "repetition": 2,
+      "profile": "baseline",
+      "csv_file": "02_baseline.csv",
+      "attempts": 300,
+      "matched_replies": 300,
+      "application_timeouts": 0,
+      "p50_us": 147.245,
+      "p95_us": 316.135,
+      "p99_us": 406.16,
+      "max_us": 559.384,
+      "csv_sha256": "b3d9089b60ee4c5600376ce76961d339697c78bf1360525a4594e84307f85021"
+    },
+    {
+      "repetition": 3,
+      "profile": "baseline",
+      "csv_file": "03_baseline.csv",
+      "attempts": 300,
+      "matched_replies": 300,
+      "application_timeouts": 0,
+      "p50_us": 139.291,
+      "p95_us": 286.279,
+      "p99_us": 447.368,
+      "max_us": 971.23,
+      "csv_sha256": "311284c6c8cce3fe0cbc6094e66eaa553519be0c448f3103a61d7a6854b3c829"
+    },
+    {
+      "repetition": 3,
+      "profile": "larger_buffer",
+      "csv_file": "03_larger_buffer.csv",
+      "attempts": 300,
+      "matched_replies": 300,
+      "application_timeouts": 0,
+      "p50_us": 132.217,
+      "p95_us": 272.562,
+      "p99_us": 409.329,
+      "max_us": 674.001,
+      "csv_sha256": "e2b20ce3cc90c098116853c78804e55092e6befb5380a8ab030974aff17861c1"
+    }
+  ],
+  "pooled_descriptive_only": {
+    "baseline": {
+      "sample_size": 900,
+      "p50_us": 136.696,
+      "p95_us": 285.454,
+      "p99_us": 402.301,
+      "max_us": 971.23
+    },
+    "larger_buffer": {
+      "sample_size": 900,
+      "p50_us": 112.091,
+      "p95_us": 254.771,
+      "p99_us": 410.167,
+      "max_us": 674.001
+    }
+  },
+  "paired_p99_larger_minus_baseline_us": [
+    {
+      "repetition": 1,
+      "delta_us": 44.298
+    },
+    {
+      "repetition": 2,
+      "delta_us": 4.066
+    },
+    {
+      "repetition": 3,
+      "delta_us": -38.039
+    }
+  ],
+  "audit_checks": [
+    "seven expected source archive members",
+    "six CSV SHA-256 checks",
+    "300 consecutive sequences per CSV",
+    "all 1800 sample rows valid and matching",
+    "per-run p50 p95 p99 maximum and successive RTT deltas recalculated",
+    "source profile and effective socket buffer values reconciled"
+  ],
+  "audit_status": "PASS",
+  "inference": "Lower observed pooled median but no consistent per-run p99 improvement; not evidence of HFT or physical NIC optimization",
+  "scope_limits": [
+    "Application-level monotonic-clock RTT inside Docker/WSL2 loopback only",
+    "Source integrity checks do not attest hardware behavior or environmental provenance",
+    "Small number of paired repetitions; serial probes unlikely to saturate socket receive queues"
+  ]
+}
