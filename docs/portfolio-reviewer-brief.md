@@ -53,6 +53,10 @@ A separate, operator-run Docker/WSL2 experiment tested two process-local socket-
 - Network operations state logic: [`network-operations-toolkit/netops/`](https://github.com/milenastrahova/network-operations-toolkit/tree/main/netops)
 - BGP configurations: [`bgp-routing-laboratory/configs/`](https://github.com/milenastrahova/bgp-routing-laboratory/tree/main/configs)
 
+## Additional packet-capture reproducibility
+
+The [isolated UDP loopback PCAP capture pipeline](../docs/pcap-capture-runbook.md) correlates per-session UDP requests/replies in classic PCAP with source-audited CSV application outcomes. Docker's network namespace is set to none (no external connectivity), and tcpdump is scoped to local generated traffic. GitHub Actions verifies the isolated workflow. This is not a physical NIC capture or proof of exchange-network latency.
+
 ## Reproducibility and boundaries
 
 The experiments run on Windows 11/Docker Desktop/WSL2 or Linux. The repos include their own runbooks, tests and CI. None claims ownership of exchange infrastructure, colocation circuits, FPGA, kernel bypass or hardware timestamp data. This page is a **technical index of existing work**, not a claim of verified commercial HFT deployment.

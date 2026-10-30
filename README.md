@@ -94,6 +94,8 @@ py -3 scripts/market_data_feed_lab.py demo --count 80
 
 The synthetic feed uses real local UDP sockets with an invented protocol. **It is not a live exchange feed, a completed FIX/FAST implementation, or a production multicast system.**
 
+**Isolated PCAP evidence pipeline:** Docker-only loopback UDP capture with TCPDump, per-session NPS1 packet correlation against source-audited application CSVs, capture completeness checks, SHA-256 manifest and safe Windows PowerShell launcher. [Runbook](docs/pcap-capture-runbook.md) · [Correlation code](scripts/correlate_pcap_echo.py) · [CI](.github/workflows/pcap-capture-pipeline.yml). No host NIC capture or network configuration changes.
+
 ## Review the engineering decisions
 
 | Focus | Where to look |
