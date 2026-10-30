@@ -106,3 +106,8 @@ The synthetic feed uses real local UDP sockets with an invented protocol. **It i
 The measurements are **sequential user-space RTT inside Docker/WSL2**, not PTP-synchronized one-way wire latency, kernel-bypass or NIC hardware timestamps. No trading-exchange infrastructure is used. This independent lab provides reproducible code and bounded evidence—not a production HFT performance claim.
 
 *Independent engineering portfolio project.*
+
+
+## Portfolio reviewer quick start
+
+**Evaluating network engineering evidence?** Read the [Network Engineering Portfolio Reviewer Brief](docs/portfolio-reviewer-brief.md) first. It links the four-AS BGP lab, Python operations toolkit, C++ transport measurements, source-verified 10,580-attempt UDP study, and explicit engineering limitations.
