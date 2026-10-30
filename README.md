@@ -50,6 +50,12 @@ The [operator protocol](docs/reproducible-bgp-study.md) explains a reproducible 
 
 [Full source-verified experiment report](docs/bgp-nine-run-source-audit-2026-10-30.md) · [Machine-readable audited summary](evidence/bgp-nine-run-audit-2026-10-30.json)
 
+## Source-verified Linux socket-buffer measurements — 30 October 2026
+
+**Original CSV/JSON audit passed:** six Linux Docker/WSL2 UDP loopback runs, **1,800 / 1,800** matched application replies, **zero timeouts**, with per-run percentiles independently recalculated against six CSV files and SHA-256 fingerprints. Requesting larger process-local socket buffers produced a lower pooled p50 (112.091 vs 136.696 µs), but **did not demonstrate a repeatable p99 improvement** across three paired repetitions. This is a controlled measurement-methodology exercise, not HFT NIC optimization.
+
+[Complete source-verified report](docs/socket-buffer-source-audit-2026-10-30.md) · [Machine-readable audit](evidence/socket-buffer-source-audit-2026-10-30.json) · [Experiment source](scripts/socket_buffer_study.py)
+
 ## Reproduce a standalone benchmark
 
 On **Windows 11 + Docker Desktop with Linux containers**, from this repository:
