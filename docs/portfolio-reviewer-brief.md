@@ -35,6 +35,12 @@ A separate, operator-run Docker/WSL2 experiment tested two process-local socket-
 
 [Read full six-run source audit](socket-buffer-source-audit-2026-10-30.md) · [Machine-readable report](../evidence/socket-buffer-source-audit-2026-10-30.json)
 
+## Independently verified packet-level capture
+
+A user-run isolated Linux Docker/WSL2 study captured **1,040 UDP frames and 520 matched request/reply pairs** (480 counted application requests and 40 warmup exchanges). The original PCAP and four trial CSV files were independently decoded and audited; **all 8 source SHA-256 checks passed**, with no missing/duplicate NPS1 observations. The full report distinguishes kernel-capture timestamp differences from application RTT and does **not** claim buffer-tuning improvement.
+
+[Source-verification technical report](pcap-loopback-source-verification-2026-10-30.md) · [Audited JSON evidence](../evidence/pcap-loopback-source-audit-2026-10-30.json)
+
 ## Engineering decisions worth reviewing
 
 **Route selection ≠ lowest latency.** Local Preference determines administrative routing policy; verifying traffic requires checking the forwarding table and application behavior separately.
