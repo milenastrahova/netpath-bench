@@ -1,0 +1,51 @@
+name: Isolated PCAP capture evidence
+
+on:
+  push:
+    paths:
+      - 'Dockerfile.pcap'
+      - 'Run-Pcap-Evidence.ps1'
+      - 'scripts/run_pcap_capture.py'
+      - 'scripts/correlate_pcap_echo.py'
+      - 'scripts/socket_buffer_study.py'
+      - 'tests/test_pcap_capture_pipeline.py'
+      - '.github/workflows/pcap-capture-pipeline.yml'
+  pull_request:
+    paths:
+      - 'Dockerfile.pcap'
+      - 'Run-Pcap-Evidence.ps1'
+      - 'scripts/run_pcap_capture.py'
+      - 'scripts/correlate_pcap_echo.py'
+      - 'scripts/socket_buffer_study.py'
+      - 'tests/test_pcap_capture_pipeline.py'
+      - '.github/workflows/pcap-capture-pipeline.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline PCAP and integrity tests
+        run: python -m unittest discover -s tests -p 'test_pcap_capture_pipeline.py' -v
+      - name: Build isolated capture container
+        run: docker build -f Dockerfile.pcap -t netpath-pcap-evidence:ci .
+      - name: Capture real Linux loopback UDP in isolated container
+        run: docker run --rm --network none --cap-drop ALL --cap-add NET_RAW -v "$PWD:/work" -w /work netpath-pcap-evidence:ci python scripts/run_pcap_capture.py --repetitions 1 --count 20
+      - name: Evidence presence check
+        run: test -n "$(find reports -type f -name 'correlation.json' -print -quit)"
+      - name: Retain short-lived test artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: isolated-udp-loopback-pcap-not-production
+          path: reports/pcap-study-*/
+          retention-days: 3
+          if-no-files-found: ignore
